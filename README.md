@@ -255,3 +255,59 @@ python run.py
 ```bash
 python -m pytest -q
 ```
+
+## Example Output
+
+A typical engine response looks like this:
+```json
+{
+    "verdict": "PASS",
+    "reason": "Passed all implemented rules (not final eligibility)",
+    "missing": [],
+    "details": [
+        {
+            "rule_id": "R6_measurable_disease",
+            "verdict": "PASS",
+            "reason": "Measurable disease threshold satisfied",
+            "missing": []
+        },
+        {
+            "rule_id": "R7_prior_PI_len_PRplus",
+            "verdict": "PASS",
+            "reason": "Required prior treatment and response history satisfied",
+            "missing": []
+        }
+    ]
+}
+```
+
+### Output Semantics
+
+| Verdict | Meaning |
+|---------|---------|
+| `PASS` | The patient passed all currently implemented rules. |
+| `NOT_ELIGIBLE` | At least one implemented exclusion or fail condition was triggered. |
+| `UNCERTAIN` | No hard failure was found, but key information is missing. |
+
+> This is deliberate. In real prescreen workflows, incomplete information is common,
+> and a forced yes/no output can be misleading.
+
+---
+
+## Testing
+
+This project uses `pytest` to validate both:
+
+- individual rule behavior, and
+- multi-rule aggregation logic.
+
+Testing currently focuses on:
+
+- positive pass cases,
+- fail / exclusion cases,
+- uncertain cases caused by missing data,
+- consistency of rule-level reasoning, and
+- aggregation behavior across multiple rules.
+
+> The goal is not only for the code to run, but for the screening logic to remain
+> stable and reviewable as more criteria are added.
