@@ -311,3 +311,105 @@ Testing currently focuses on:
 
 > The goal is not only for the code to run, but for the screening logic to remain
 > stable and reviewable as more criteria are added.
+
+---
+
+## Design Choices
+
+### Why a rule-based system instead of ML?
+
+Because this use case benefits more from transparency than opaque prediction.
+Eligibility screening logic should be:
+
+- reviewable,
+- explainable,
+- easy to update, and
+- traceable to protocol intent.
+
+A rule-based design is a good fit for that objective.
+
+---
+
+### Why tri-state output?
+
+Because there is an operational difference between:
+
+- "the patient fails", and
+- "we do not yet have enough information".
+
+This project makes that difference explicit through `UNCERTAIN`.
+
+---
+
+### Why use buckets?
+
+Some groups of criteria are more realistic to handle as aggregated screening buckets
+rather than highly fragmented micro-rules.
+
+Examples in this PoC:
+
+- `R10` safety exclusion bucket
+- `R11` lab threshold bucket
+
+This keeps the system closer to how pre-screening often works in practice.
+
+---
+
+### Why keep the scope modest?
+
+Because a smaller, honest PoC is more credible than an overstated "full trial engine".
+This repository is intentionally scoped to demonstrate:
+
+- the architecture,
+- the rule design pattern,
+- the prescreen workflow, and
+- the traceability mindset.
+
+---
+
+## Protocol Mapping Layer
+
+The repository includes a protocol-mapping layer through `trial_meta.py`.
+
+Its purpose is to keep a clear connection between:
+
+- rule IDs,
+- protocol intent,
+- required input fields,
+- logic summaries, and
+- implementation status.
+
+This makes the project easier to maintain and easier to discuss in an interview,
+because it separates:
+
+1. clinical intent, and
+2. engineering implementation.
+
+> That mapping layer is especially useful for future expansion beyond the current rule set.
+
+---
+
+## Limitations
+
+This repository has important limitations by design:
+
+- It does not implement the full protocol.
+- It does not replace investigator, site, or clinician judgment.
+- It assumes structured patient inputs rather than raw EHR ingestion.
+- It does not currently parse unstructured clinical text.
+- It is a PoC, not a production clinical decision support product.
+- It does not provide medical advice.
+
+> I prefer to state these limitations explicitly rather than overclaiming the maturity
+> of the system.
+
+Potential long-tail items not yet fully covered may include:
+
+- transplant-related timing nuances,
+- CNS / meningeal involvement logic,
+- finer-grained infection stratification,
+- additional comorbidity details,
+- reproductive / pregnancy restrictions, and
+- more detailed laboratory or complication subcriteria.
+
+---
