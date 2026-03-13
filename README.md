@@ -224,7 +224,7 @@ flowchart TD
 
 ### 1. Clone the repository
 ```bash
-git clone <YOUR_REPOSITORY_URL>
+git clone <https://github.com/arcma034/phase3-eligibility-prescreen-engine.git>
 cd phase3-eligibility-prescreen-engine
 ```
 
@@ -409,7 +409,70 @@ Potential long-tail items not yet fully covered may include:
 - CNS / meningeal involvement logic,
 - finer-grained infection stratification,
 - additional comorbidity details,
+
+---
+
+## Roadmap
+
+Planned next steps include:
+
+- expanding rule coverage beyond R1–R11,
+- adding structured public demo patients,
+- including one `PASS`, one `NOT_ELIGIBLE`, and one `UNCERTAIN` example case,
+- improving input schema validation,
+- documenting evidence-to-rule traceability more explicitly,
+- adding screenshots of terminal outputs, and
+- potentially exposing the engine through a simple CLI or API.
+
+A particularly useful next milestone would be an `examples/` folder such as:
+```
+examples/
+├─ patient_pass.json
+├─ patient_not_eligible.json
+└─ patient_uncertain.json
+```
+
+> That would make the repository easier to evaluate as a portfolio project.
 - reproductive / pregnancy restrictions, and
 - more detailed laboratory or complication subcriteria.
 
 ---
+
+## Why This Works as a Portfolio Project
+
+This repository is not meant to impress through code volume alone.
+
+Its value as a portfolio project is that it demonstrates how I approach an ambiguous
+real-world problem:
+
+- define the scope carefully,
+- translate messy requirements into explicit logic,
+- separate rule logic from engine behavior,
+- handle uncertainty honestly, and
+- produce outputs that humans can review.
+
+> In that sense, this is both a coding project and a small systems-design project.
+
+It is especially relevant for roles related to:
+
+- healthcare / life sciences product,
+- clinical operations technology,
+- trial matching workflows,
+- decision-support tooling,
+- regulated process design, and
+- technical strategy / operations.
+
+---
+
+## Author
+
+**MA RUOHENG** — Master of Science, National University of Singapore
+
+Background: pharmacy / life sciences / healthcare operations / technical product thinking
+
+If you are reviewing this repository for hiring, I would be glad to discuss:
+
+- how the eligibility logic was translated into executable rules,
+- why tri-state output was chosen,
+- why grouped buckets were used for some criteria, and
+- how this PoC could be extended toward broader trial-matching workflows.
