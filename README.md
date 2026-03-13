@@ -476,3 +476,9 @@ If you are reviewing this repository for hiring, I would be glad to discuss:
 - why tri-state output was chosen,
 - why grouped buckets were used for some criteria, and
 - how this PoC could be extended toward broader trial-matching workflows.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
